@@ -24,3 +24,6 @@ create policy "Public can join the waitlist"
   for insert
   to anon
   with check (true);
+
+-- Newer Supabase projects don't grant table access to the public role automatically.
+grant insert on public.waitlist to anon;
