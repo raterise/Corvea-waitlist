@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corvea | Bookings, deposits and client records</title>
+<meta name="description" content="Corvea brings your bookings, deposits and client records together. Join the waitlist for founding-member pricing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#14213D;--navy-2:#1E2F52;--cream:#F7F2EA;--sand:#EDE4D6;--amber:#F2A541;--amber-dark:#C9811F;--ink:#1B1B1B;--muted:#5C5A55;--line:#E2D8C8;--error:#B3261E;--ok:#2E7D4F}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{font-family:Fraunces,serif;font-weight:600;font-size:26px;letter-spacing:-.5px;color:var(--navy);text-decoration:none}
+.logo span{color:var(--amber-dark)}
+.nav a.cta{font-size:14px;font-weight:500;text-decoration:none;border:1px solid var(--navy);padding:8px 16px;border-radius:999px;color:var(--navy)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:40px 0 72px}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;color:var(--navy);background:var(--sand);padding:6px 12px;border-radius:999px;margin-bottom:18px}
+h1{font-family:Fraunces,serif;font-weight:600;font-size:clamp(36px,5.4vw,58px);line-height:1.05;letter-spacing:-1px;color:var(--navy);margin:0 0 18px}
+h1 em{font-style:normal;color:var(--amber-dark)}
+.lead{font-size:18px;color:var(--muted);max-width:520px;margin:0 0 28px}
+.btn{display:inline-block;background:var(--navy);color:#fff;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;text-decoration:none;font-family:inherit}
+.btn:hover{background:var(--navy-2)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.small{font-size:13px;color:var(--muted)}
+.mock{background:var(--navy);border-radius:28px;padding:22px;box-shadow:0 30px 60px -30px rgba(20,33,61,.5)}
+.mock-day{color:#C9D2E3;font-size:13px;margin-bottom:12px;display:flex;justify-content:space-between}
+.appt{background:#fff;border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.appt b{display:block;font-size:14px;color:var(--navy)}
+.appt small{color:var(--muted);font-size:12px}
+.tag{font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.tag.paid{background:#E5F3EA;color:var(--ok)}
+.tag.due{background:#FDF0DC;color:var(--amber-dark)}
+.tag.wait{background:#E7EBF3;color:var(--navy)}
+section{padding:64px 0}
+h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(28px,3.6vw,40px);letter-spacing:-.5px;color:var(--navy);margin:0 0 12px;line-height:1.15}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}
+.card .num{font-family:Fraunces,serif;font-size:15px;color:var(--amber-dark);font-weight:600}
+.card h3{font-size:19px;color:var(--navy);margin:8px 0 8px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.who{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.who span{background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:999px;font-size:14px}
+.join{background:var(--navy);color:#fff;border-radius:32px;padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.join h2{color:#fff}
+.join p{color:#C9D2E3}
+.offer{list-style:none;padding:0;margin:22px 0 0}
+.offer li{padding:10px 0 10px 30px;position:relative;border-top:1px solid rgba(255,255,255,.12)}
+.offer li::before{content:"";position:absolute;left:4px;top:18px;width:12px;height:12px;border-radius:50%;background:var(--amber)}
+form{background:#fff;color:var(--ink);border-radius:22px;padding:28px}
+.join form p{color:var(--muted)}
+.hero>*,.join>*{min-width:0}
+label{display:block;font-size:14px;font-weight:500;margin:0 0 6px;color:var(--navy)}
+input[type=text],input[type=email],select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:#FCFAF6;color:var(--ink);margin-bottom:16px}
+input:focus,select:focus{outline:2px solid var(--amber);outline-offset:1px;border-color:var(--amber)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted);margin:4px 0 20px;font-weight:400}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--navy)}
+form .btn{width:100%}
+.msg{font-size:14px;margin-top:12px;min-height:20px}
+.msg.err{color:var(--error)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{text-align:center;padding:24px 8px}
+.done h3{font-family:Fraunces,serif;color:var(--navy);font-size:26px;margin:0 0 8px}
+footer{padding:40px 0 60px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media (max-width:860px){.hero,.join{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}.join{padding:28px 20px;border-radius:24px}.hero{padding-top:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="nav">
+    <a class="logo" href="/">Corvea<span>.</span></a>
+    <a class="cta" href="#join">Join the waitlist</a>
+  </header>
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow" id="eyebrow">Founding spots now open</span>
+      <h1 id="headline">Fewer no-shows. <em>Every client remembered.</em></h1>
+      <p class="lead" id="lead">Corvea brings your bookings, deposits and client records together in one place, built for businesses that run on appointments.</p>
+      <a class="btn" href="#join">Get founding-member pricing</a>
+      <p class="small" style="margin-top:12px">Made in Brisbane. No card needed to join the waitlist.</p>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-day"><span>Tuesday</span><span>4 bookings</span></div>
+      <div class="appt"><div><b id="m1">9:00 · Lash infill</b><small>Sarah M. · regular</small></div><span class="tag paid">Deposit paid</span></div>
+      <div class="appt"><div><b id="m2">11:00 · Brow lamination</b><small>Jess K. · new client</small></div><span class="tag paid">Deposit paid</span></div>
+      <div class="appt"><div><b id="m3">2:00 · Lip blush</b><small>Cancelled · slot refilled</small></div><span class="tag wait">From waitlist</span></div>
+      <div class="appt"><div><b>Due to rebook</b><small>3 clients this week</small></div><span class="tag due">Remind</span></div>
+    </div>
+  </div>
+</div>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <h2>Run your day, not your DMs</h2>
+    <p class="lead" style="margin:0">Most booking tools only remember the appointment. Corvea remembers the client.</p>
+    <div class="benefits">
+      <div class="card"><div class="num">01</div><h3>Deposits at booking</h3><p>Clients pay a deposit when they book, so a no-show doesn't cost you the slot and the money.</p></div>
+      <div class="card"><div class="num">02</div><h3>Clients book themselves</h3><p>Share one link. Clients pick a time that suits them, without the back-and-forth messages.</p></div>
+      <div class="card"><div class="num">03</div><h3>Every client remembered</h3><p>Notes, photos and history in one profile, plus a list of who's due back so you can rebook them.</p></div>
+    </div>
+    <div class="who" aria-label="Who Corvea is for">
+      <span>Lash and brow studios</span><span>Cosmetic tattoo</span><span>Hair and beauty</span><span>Personal trainers</span><span>Pet groomers</span><span>Clinics and therapists</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section id="join">
+    <div class="join">
+      <div>
+        <h2>Become a founding member</h2>
+        <p>We're opening Corvea to a small group of businesses first. Founding members help shape what we build and get the best deal we'll ever offer.</p>
+        <ul class="offer">
+          <li>First 3 months free</li>
+          <li>Your founding price locked in for as long as you're with us</li>
+          <li>Direct line to the founder for feedback and requests</li>
+          <li>Limited to the first 50 businesses</li>
+        </ul>
+      </div>
+
+      <form id="waitlist" novalidate>
+        <div id="fields">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name" maxlength="120" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" maxlength="200" placeholder="you@yourbusiness.com.au" required>
+
+          <label for="business_type">What kind of business do you run?</label>
+          <select id="business_type" name="business_type" required>
+            <option value="">Choose one</option>
+            <option value="lash_brow_pmu">Lash, brow or cosmetic tattoo</option>
+            <option value="hair">Hair salon or barber</option>
+            <option value="beauty_nails">Beauty, nails or skin</option>
+            <option value="fitness">Personal training or fitness</option>
+            <option value="pet">Pet grooming</option>
+            <option value="health">Clinic, physio or therapy</option>
+            <option value="other">Something else</option>
+          </select>
+
+          <div class="hp" aria-hidden="true"><label for="company">Leave this empty</label><input id="company" name="company" type="text" tabindex="-1" autocomplete="off"></div>
+
+          <label class="check"><input id="consent" name="consent" type="checkbox"> <span>Send me occasional updates about Corvea. You can unsubscribe at any time.</span></label>
+
+          <button class="btn" type="submit" id="submit">Join the waitlist</button>
+          <p class="msg" id="msg" role="status" aria-live="polite"></p>
+          <p class="small" style="margin:6px 0 0">We'll only use your details to contact you about Corvea. <a href="/privacy.html">Privacy</a></p>
+        </div>
+        <div class="done" id="done" hidden>
+          <h3>You're on the list</h3>
+          <p class="small" style="font-size:15px">Thanks for joining. We'll be in touch as founding spots open up.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>© Corvea, Brisbane, Australia</span>
+    <span><a href="/privacy.html">Privacy</a></span>
+  </footer>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm";
+
+const SUPABASE_URL = "https://jggidyynjdlsilpdehis.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_xO_HWyiP8tn0C4HRvoibhw_pGLZ2J8_";
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const params = new URLSearchParams(location.search);
+const source = (params.get("source") || "direct").slice(0, 80);
+const variant = (params.get("for") || "").slice(0, 40);
+
+const variants = {
+  lash: { type: "lash_brow_pmu", eyebrow: "For lash, brow and cosmetic tattoo studios", headline: "No-shows cost you the slot <em>and the pigment.</em>", lead: "Corvea takes deposits at booking, refills cancelled slots from your waitlist and tells you who's due for their infill." },
+  hair: { type: "hair", eyebrow: "For hair salons and barbers", headline: "Your chair, <em>always booked.</em>", lead: "Corvea takes deposits at booking, lets clients book themselves and reminds you who's due for their next cut." },
+  fitness: { type: "fitness", eyebrow: "For personal trainers", headline: "Stop chasing sessions <em>in your DMs.</em>", lead: "Clients book and pay through one link, and Corvea keeps every client's notes and history in one place." },
+  pet: { type: "pet", eyebrow: "For pet groomers", headline: "Every pup remembered, <em>every slot filled.</em>", lead: "Corvea takes deposits at booking, keeps notes on every client and tells you who's due back for their next groom." }
+};
+const v = variants[variant];
+if (v) {
+  document.getElementById("eyebrow").textContent = v.eyebrow;
+  document.getElementById("headline").innerHTML = v.headline;
+  document.getElementById("lead").textContent = v.lead;
+  document.getElementById("business_type").value = v.type;
+}
+
+const form = document.getElementById("waitlist");
+const msg = document.getElementById("msg");
+const btn = document.getElementById("submit");
+const emailOk = (e) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
+
+form.addEventListener("input", () => { msg.textContent = ""; msg.className = "msg"; });
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = form.name.value.trim();
+  const email = form.email.value.trim().toLowerCase();
+  const business_type = form.business_type.value;
+
+  if (form.company.value) return;
+  if (!name) return fail("Add your name.");
+  if (!emailOk(email)) return fail("Enter a valid email address.");
+  if (!business_type) return fail("Choose your business type.");
+
+  btn.disabled = true; btn.textContent = "Joining…";
+  const { error } = await supabase.from("waitlist").insert({
+    name, email, business_type,
+    marketing_consent: form.consent.checked,
+    source, landing_variant: variant || null
+  });
+  btn.disabled = false; btn.textContent = "Join the waitlist";
+
+  if (error && error.code !== "23505") return fail("Something went wrong. Try again in a moment.");
+  document.getElementById("fields").hidden = true;
+  document.getElementById("done").hidden = false;
+});
+
+function fail(text) { msg.textContent = text; msg.className = "msg err"; }
+</script>
+</body>
+</html>
